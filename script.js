@@ -1,13 +1,14 @@
 'use strict';
+
 const secretNumRange = 20;
-let secretNum = Math.trunc(Math.random() * secretNumRange) + 1;
 const msgElem = document.querySelector('.message');
 const scoreElem = document.querySelector('.score');
-let score = secretNumRange;
 const secretNumElem = document.querySelector('.secrect-number');
-// const guessInputElem = document.querySelector('.guess-input');
-let highScore = 0;
 const highScoreElem = document.querySelector('.highscore');
+
+let secretNum = Math.trunc(Math.random() * secretNumRange) + 1;
+let score = secretNumRange;
+let highScore = 0;
 
 document.querySelector('.check-btn').addEventListener('click', function () {
     const guessNum = Number(document.querySelector('.guess-input').value);
@@ -24,21 +25,10 @@ document.querySelector('.check-btn').addEventListener('click', function () {
                 highScore = score;
                 highScoreElem.textContent = highScore;
             }
-
-            /** The guess seems a bit too low—try aiming higher! */
-        } else if (guessNum < secretNum) {
+        } else if (guessNum !== secretNum) {
             if (score > 1) {
-                msgElem.textContent = "📉 To Low";
-                score--;
-                scoreElem.textContent = score;
-            } else {
-                msgElem.textContent = "💥 You lost the game!";
-                scoreElem.textContent = 0;
-            }
-            /** The guess seems a bit too high—try aiming lower! */
-        } else if (guessNum > secretNum) {
-            if (score > 1) {
-                msgElem.textContent = "📈 To High";
+                /** The guess seems a bit too (low—try / high-try) aiming (Lower / higher)! */
+                msgElem.textContent = (guessNum < secretNum) ? "📉 To Low" : "📈 To High";
                 score--;
                 scoreElem.textContent = score;
             } else {

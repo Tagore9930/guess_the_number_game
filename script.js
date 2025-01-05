@@ -50,8 +50,6 @@ document.querySelector('.check-btn').addEventListener('click', function () {
     } else {
         msgElem.textContent = `⛔ Wrong Number, Number between 0 to ${secretNumRange}`;
     }
-
-    console.log("guess", guessNum, secretNum);
 });
 
 /** Reset game Event */
